@@ -24,11 +24,11 @@ CartCrunch is an app that will allow users to search for groceries in the Kroger
 * User signs up and logs in to save product preferences and track price changes
 * User searches for products using keywords or product names
 * User adds products to their watchlist for tracking price updates
-* Price update feed displays the latest price changes for products in the user's watchlist or in general
 * Users receive push notifications when there's a significant price change for a product in their watchlist or when a product reaches a specific price
 * Users can locate nearby Kroger stores based on their current location or a specified location
 
 **Optional Nice-to-have Stories**
+* Price update feed displays the latest price changes for products in the user's watchlist or in general
 * Graph representation of the price history for each product in the user's watchlist
 * Comparison of prices for the same product across different stores
 * Integration of the watchlist with a shopping list, allowing users to add price-tracked products to their grocery list and check them off
