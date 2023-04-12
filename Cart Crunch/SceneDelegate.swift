@@ -17,11 +17,52 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
             // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         if let windowScene = (scene as? UIWindowScene) {
+            
+            //create the UITabBarController
+            let tabBarController = UITabBarController()
+            
+            //create tab bar items
+            let homeItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house"))
+            let searchItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
+            let watchlistItem = UITabBarItem(title: "Watchlist", image: UIImage(systemName: "bookmark"), selectedImage: UIImage(systemName: "bookmark"))
+            let settingsItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear"))
+            
+            //make viewcontroller/navigationcontroller for each screen here
+            let homeScreenVC = HomeScreenViewController()
+            let navigationControllerHome = UINavigationController(rootViewController: homeScreenVC)
+            
+            let searchScreenVC = SearchViewController()
+            let navigationControllerSearch = UINavigationController(rootViewController: searchScreenVC)
+            
+            let watchListScreenVC = WatchListViewController()
+            let navigationControllerWatchlist = UINavigationController(rootViewController: watchListScreenVC)
+            
+            let settingsScreenVC = SettingsViewController()
+            let navigationControllerSettings = UINavigationController(rootViewController: settingsScreenVC)
+            
+           //add the navigationcontrollers to the tab bar
+            tabBarController.viewControllers = [
+                navigationControllerHome,
+                navigationControllerSearch,
+                navigationControllerWatchlist,
+                navigationControllerSettings
+            ]
+            
+            //initialize here
             let window = UIWindow(windowScene: windowScene)
-            let rootVC = ViewController()
-            window.rootViewController = rootVC
+            window.rootViewController = tabBarController
             self.window = window
             window.makeKeyAndVisible()
+            
+            //handle tab bar appearance here
+            
+            //handle navigation appearance here
+            
+            //attach the navigation controllers to the tab bar items
+            navigationControllerHome.tabBarItem = homeItem
+            navigationControllerSearch.tabBarItem = searchItem
+            navigationControllerWatchlist.tabBarItem = watchlistItem
+            navigationControllerSettings.tabBarItem = settingsItem
         }
     }
     
