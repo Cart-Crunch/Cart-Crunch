@@ -1,19 +1,17 @@
 //
-//  ViewController.swift
+//  WatchListViewController.swift
 //  Cart Crunch
 //
-//  Created by TaeVon Lewis on 4/12/23.
+//  Created by Gabe Jones on 4/12/23.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class WatchListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        view.backgroundColor = .purple
     }
-
-
 }
-
