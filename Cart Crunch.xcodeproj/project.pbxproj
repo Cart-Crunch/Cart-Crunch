@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B399DFDB29E6E169004A8D8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399DFDA29E6E169004A8D8F /* AppDelegate.swift */; };
-		B399DFDF29E6E169004A8D8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399DFDE29E6E169004A8D8F /* ViewController.swift */; };
+		B399DFDF29E6E169004A8D8F /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399DFDE29E6E169004A8D8F /* ProductDetailViewController.swift */; };
 		B399DFE529E6E169004A8D8F /* Cart_Crunch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B399DFE329E6E169004A8D8F /* Cart_Crunch.xcdatamodeld */; };
 		B399DFE729E6E16A004A8D8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B399DFE629E6E16A004A8D8F /* Assets.xcassets */; };
 		B399DFEA29E6E16A004A8D8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B399DFE829E6E16A004A8D8F /* LaunchScreen.storyboard */; };
@@ -20,6 +20,10 @@
 		B399E01429E708ED004A8D8F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E01329E708ED004A8D8F /* Product.swift */; };
 		B399E01629E70E24004A8D8F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E01529E70E24004A8D8F /* LocationManager.swift */; };
 		B399E01829E70F87004A8D8F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E01729E70F87004A8D8F /* Store.swift */; };
+		FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */; };
+		FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */; };
+		FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */; };
+		FDB6CEAE29E73C3E00C407F1 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +46,7 @@
 /* Begin PBXFileReference section */
 		B399DFD729E6E169004A8D8F /* Cart Crunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cart Crunch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B399DFDA29E6E169004A8D8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B399DFDE29E6E169004A8D8F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B399DFDE29E6E169004A8D8F /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		B399DFE429E6E169004A8D8F /* Cart_Crunch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cart_Crunch.xcdatamodel; sourceTree = "<group>"; };
 		B399DFE629E6E16A004A8D8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B399DFE929E6E16A004A8D8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +61,10 @@
 		B399E01329E708ED004A8D8F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		B399E01529E70E24004A8D8F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B399E01729E70F87004A8D8F /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
+		FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +119,11 @@
 				B399E00F29E70044004A8D8F /* Network */,
 				B399E00D29E6F78A004A8D8F /* SceneDelegate.swift */,
 				B399DFDA29E6E169004A8D8F /* AppDelegate.swift */,
-				B399DFDE29E6E169004A8D8F /* ViewController.swift */,
+				B399DFDE29E6E169004A8D8F /* ProductDetailViewController.swift */,
+				FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */,
+				FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */,
+				FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */,
+				FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */,
 				B399DFE629E6E16A004A8D8F /* Assets.xcassets */,
 				B399DFE829E6E16A004A8D8F /* LaunchScreen.storyboard */,
 				B399DFEB29E6E16A004A8D8F /* Info.plist */,
@@ -285,12 +297,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */,
+				FDB6CEAE29E73C3E00C407F1 /* HomeScreenViewController.swift in Sources */,
 				B399DFE529E6E169004A8D8F /* Cart_Crunch.xcdatamodeld in Sources */,
-				B399DFDF29E6E169004A8D8F /* ViewController.swift in Sources */,
 				B399E01129E70056004A8D8F /* NetworkManager.swift in Sources */,
 				B399E01829E70F87004A8D8F /* Store.swift in Sources */,
 				B399E01629E70E24004A8D8F /* LocationManager.swift in Sources */,
+				B399DFDF29E6E169004A8D8F /* ProductDetailViewController.swift in Sources */,
+				FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */,
 				B399DFDB29E6E169004A8D8F /* AppDelegate.swift in Sources */,
+				FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */,
 				B399E00E29E6F78A004A8D8F /* SceneDelegate.swift in Sources */,
 				B399E01429E708ED004A8D8F /* Product.swift in Sources */,
 			);
@@ -468,6 +484,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -495,6 +512,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
