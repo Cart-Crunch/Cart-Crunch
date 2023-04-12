@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B399DFDB29E6E169004A8D8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399DFDA29E6E169004A8D8F /* AppDelegate.swift */; };
-		B399DFDF29E6E169004A8D8F /* productDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399DFDE29E6E169004A8D8F /* productDetailViewController.swift */; };
+		B399DFDF29E6E169004A8D8F /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399DFDE29E6E169004A8D8F /* ProductDetailViewController.swift */; };
 		B399DFE529E6E169004A8D8F /* Cart_Crunch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B399DFE329E6E169004A8D8F /* Cart_Crunch.xcdatamodeld */; };
 		B399DFE729E6E16A004A8D8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B399DFE629E6E16A004A8D8F /* Assets.xcassets */; };
 		B399DFEA29E6E16A004A8D8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B399DFE829E6E16A004A8D8F /* LaunchScreen.storyboard */; };
@@ -19,6 +19,7 @@
 		FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */; };
 		FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */; };
 		FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */; };
+		FDB6CEAE29E73C3E00C407F1 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +42,7 @@
 /* Begin PBXFileReference section */
 		B399DFD729E6E169004A8D8F /* Cart Crunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cart Crunch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B399DFDA29E6E169004A8D8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B399DFDE29E6E169004A8D8F /* productDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = productDetailViewController.swift; sourceTree = "<group>"; };
+		B399DFDE29E6E169004A8D8F /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		B399DFE429E6E169004A8D8F /* Cart_Crunch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cart_Crunch.xcdatamodel; sourceTree = "<group>"; };
 		B399DFE629E6E16A004A8D8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B399DFE929E6E16A004A8D8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,6 +56,7 @@
 		FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
 		FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,10 +109,11 @@
 			children = (
 				B399E00D29E6F78A004A8D8F /* SceneDelegate.swift */,
 				B399DFDA29E6E169004A8D8F /* AppDelegate.swift */,
-				B399DFDE29E6E169004A8D8F /* productDetailViewController.swift */,
+				B399DFDE29E6E169004A8D8F /* ProductDetailViewController.swift */,
 				FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */,
 				FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */,
 				FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */,
+				FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */,
 				B399DFE629E6E16A004A8D8F /* Assets.xcassets */,
 				B399DFE829E6E16A004A8D8F /* LaunchScreen.storyboard */,
 				B399DFEB29E6E16A004A8D8F /* Info.plist */,
@@ -267,8 +270,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */,
+				FDB6CEAE29E73C3E00C407F1 /* HomeScreenViewController.swift in Sources */,
 				B399DFE529E6E169004A8D8F /* Cart_Crunch.xcdatamodeld in Sources */,
-				B399DFDF29E6E169004A8D8F /* productDetailViewController.swift in Sources */,
+				B399DFDF29E6E169004A8D8F /* ProductDetailViewController.swift in Sources */,
 				FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */,
 				B399DFDB29E6E169004A8D8F /* AppDelegate.swift in Sources */,
 				FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */,
