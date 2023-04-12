@@ -8,29 +8,61 @@
 import XCTest
 @testable import Cart_Crunch
 
+    // MARK: - Cart_CrunchTests
 final class Cart_CrunchTests: XCTestCase {
-
+   
+    var networkManager: NetworkManager!
+    
+        // MARK: - Setup and Teardown
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+            // Initialize the NetworkManager before each test
+        networkManager = NetworkManager()
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+            // Deinitialize the NetworkManager after each test
+        networkManager = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+        // MARK: - Test Fetch Products
+        /// Tests fetching products from the Kroger API.
+    func testFetchProducts() throws {
+        let expectation = XCTestExpectation(description: "Fetch products from Kroger API")
+        
+        networkManager.fetchProducts(searchTerm: "milk") { result in
+            switch result {
+                case .success(let products):
+                    XCTAssertFalse(products.isEmpty, "No products found")
+                case .failure(let error):
+                    XCTFail("Error fetching products: \(error)")
+            }
+            expectation.fulfill()
         }
+        
+            // Wait for the expectation to be fulfilled, or time out after 10 seconds
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+        // MARK: - Test Fetch Nearby Stores
+        /// Tests fetching nearby stores from the Kroger API.
+    func testFetchNearbyStores() throws {
+        let latitude = 40.2268282
+        let longitude = -74.7720528
+        
+        let expectation = XCTestExpectation(description: "Fetch nearby stores from Kroger API")
+        
+        networkManager.fetchNearbyStores(latitude: latitude, longitude: longitude) { result in
+            switch result {
+                case .success(let stores):
+                    XCTAssertFalse(stores.isEmpty, "No stores found")
+                case .failure(let error):
+                    XCTFail("Error fetching nearby stores: \(error)")
+            }
+            expectation.fulfill()
+        }
+        
+            // Wait for the expectation to be fulfilled, or time out after 10 seconds
+        wait(for: [expectation], timeout: 10.0)
     }
 
 }
