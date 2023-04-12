@@ -8,7 +8,7 @@ import UIKit
 
 //product detail view controller, this page will display the details of our products
 
-class productDetailViewController: UIViewController {
+class ProductDetailViewController: UIViewController {
     
     //declaring our UI-imageview
     let prodView: UIImageView = {
@@ -79,8 +79,6 @@ class productDetailViewController: UIViewController {
 
     //UI set up function, sets up our UI
     private func setupUI(){
-        let screenWidth = UIScreen.main.bounds.width
-        
         view.addSubview(prodView)
         view.addSubview(productNameLabel)
         view.addSubview(productCategoryLabel)
@@ -110,6 +108,7 @@ class productDetailViewController: UIViewController {
             //product price label constraints
             productPrice.topAnchor.constraint(equalTo: prodView.bottomAnchor, constant: 100),
             productPrice.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64)  
-        ]}
+        ])
     }
 }
+
