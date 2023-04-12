@@ -7,7 +7,6 @@
 import UIKit
 
 //product detail view controller, this page will display the details of our products
-//
 
 class productDetailViewController: UIViewController {
     
@@ -30,10 +29,7 @@ class productDetailViewController: UIViewController {
         label.numberOfLines = 1
         label.text = "Product name"
         
-        
-        
         return label
-        
         
     }()
     // declaring our product category label
@@ -50,7 +46,6 @@ class productDetailViewController: UIViewController {
         return label
         
     }()
-    
     
     // declaring productPrice
     let productPrice: UILabel = {
@@ -70,8 +65,6 @@ class productDetailViewController: UIViewController {
     //we need to set up a table view to load similar products here
     //declare a tableview that will call the api and display similar products
     //that will allow users to navigate to those products.
-    
-    
     
     //view loader
     override func viewDidLoad() {
@@ -116,19 +109,7 @@ class productDetailViewController: UIViewController {
             
             //product price label constraints
             productPrice.topAnchor.constraint(equalTo: prodView.bottomAnchor, constant: 100),
-            productPrice.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64)
-            
-            
-            
-        ])
-        
-        
-        
-        
-        
+            productPrice.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64)  
+        ]}
     }
-    
-    
-
 }
-
