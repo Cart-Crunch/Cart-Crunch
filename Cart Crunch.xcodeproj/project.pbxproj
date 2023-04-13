@@ -20,6 +20,7 @@
 		B399E01429E708ED004A8D8F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E01329E708ED004A8D8F /* Product.swift */; };
 		B399E01629E70E24004A8D8F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E01529E70E24004A8D8F /* LocationManager.swift */; };
 		B399E01829E70F87004A8D8F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E01729E70F87004A8D8F /* Store.swift */; };
+		E396B4F729E76F2E006E737E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E396B4F629E76F2E006E737E /* Constants.swift */; };
 		FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */; };
 		FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */; };
 		FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */; };
@@ -61,6 +62,7 @@
 		B399E01329E708ED004A8D8F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		B399E01529E70E24004A8D8F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B399E01729E70F87004A8D8F /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		E396B4F629E76F2E006E737E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
 		FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		B399DFD929E6E169004A8D8F /* Cart Crunch */ = {
 			isa = PBXGroup;
 			children = (
+				E396B4F529E76D80006E737E /* Supporting */,
 				B399E01229E708DA004A8D8F /* Models */,
 				B399E00F29E70044004A8D8F /* Network */,
 				B399E00D29E6F78A004A8D8F /* SceneDelegate.swift */,
@@ -165,6 +168,14 @@
 				B399E01729E70F87004A8D8F /* Store.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E396B4F529E76D80006E737E /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				E396B4F629E76F2E006E737E /* Constants.swift */,
+			);
+			path = Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +315,7 @@
 				B399E01829E70F87004A8D8F /* Store.swift in Sources */,
 				B399E01629E70E24004A8D8F /* LocationManager.swift in Sources */,
 				B399DFDF29E6E169004A8D8F /* ProductDetailViewController.swift in Sources */,
+				E396B4F729E76F2E006E737E /* Constants.swift in Sources */,
 				FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */,
 				B399DFDB29E6E169004A8D8F /* AppDelegate.swift in Sources */,
 				FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */,
