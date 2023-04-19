@@ -78,12 +78,17 @@ class HomeScreenTableViewCell: UITableViewCell {
         
         productNewPriceLabel.text = String(product.items.first?.price?.regular ?? 0)
         
-        guard let imageURLString = product.images.first?.sizes.first?.url else { return }
-            let imageURL = URL(string: imageURLString)
-        
+        let desiredSizeName = "medium" // Change this to the size name you want to use
+        guard let imageURLString = findImageURL(for: product.images.first?.sizes ?? [], sizeName: desiredSizeName) else { return }
+        let imageURL = URL(string: imageURLString)
         Nuke.loadImage(with: imageURL!, into: productImageView)
+
     }
     
+    func findImageURL(for images: [ImageMetaData], sizeName: String) -> String? {
+        return images.first(where: { $0.size == sizeName })?.url
+    }
+
     //MARK: - Setup UI
     private func setupUI() {
         contentView.addSubview(productNameLabel)
@@ -102,8 +107,6 @@ class HomeScreenTableViewCell: UITableViewCell {
             productImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
             productImageView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
             productImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            productImageView.heightAnchor.constraint(equalToConstant: 100),
-            productImageView.widthAnchor.constraint(equalToConstant: 100),
             
             productNameLabel.topAnchor.constraint(equalTo: productImageView.topAnchor),
             productNameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 10),
