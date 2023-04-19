@@ -26,7 +26,7 @@ class HomeScreenViewController: UIViewController {
     }()
     
     let stackView: UIStackView = {
-        //neede for the horizontally scrollable buttons
+        //needed for the horizontally scrollable buttons
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 30
@@ -52,7 +52,6 @@ class HomeScreenViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
         button.backgroundColor = UIColor(red: 233/255, green: 233/255, blue: 233/255, alpha: 1.0)
-        button.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -64,7 +63,6 @@ class HomeScreenViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
         button.backgroundColor = UIColor(red: 233/255, green: 233/255, blue: 233/255, alpha: 1.0)
-        button.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -76,7 +74,6 @@ class HomeScreenViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
         button.backgroundColor = UIColor(red: 233/255, green: 233/255, blue: 233/255, alpha: 1.0)
-        button.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -88,7 +85,6 @@ class HomeScreenViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
         button.backgroundColor = UIColor(red: 233/255, green: 233/255, blue: 233/255, alpha: 1.0)
-        button.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -100,10 +96,17 @@ class HomeScreenViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
         button.backgroundColor = UIColor(red: 233/255, green: 233/255, blue: 233/255, alpha: 1.0)
-        button.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
         return button
     }()
     
+    func setupButtonTargets() {
+        testButton1.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
+        testButton2.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
+        testButton3.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
+        testButton4.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
+        testButton5.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
+    }
+
     //MARK: - Network manager
     //so we can access the methods from this class
     let networkManager = NetworkManager()
@@ -115,6 +118,7 @@ class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupButtonTargets()
         tableView.delegate = self
         tableView.dataSource = self
         view.backgroundColor = .white
