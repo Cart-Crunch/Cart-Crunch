@@ -9,6 +9,7 @@ import UIKit
 
 struct Product: Codable {
     let productId: String
+    let brand: String?
     let description: String
     let items: [ProductItem]
     let images: [Image]
@@ -17,8 +18,9 @@ struct Product: Codable {
     /// Fun Fact:
     ///    adding an initializer allows us to omit the props in our parameter so it doesn't yell at us for missing a property
     
-    init(productId: String, description: String, items: [ProductItem], images: [Image], timestamp: Date?) {
+    init(productId: String, brand: String?, description: String, items: [ProductItem], images: [Image], timestamp: Date?) {
         self.productId = productId
+        self.brand = brand
         self.description = description
         self.items = items
         self.images = images
@@ -52,6 +54,7 @@ extension Product {
     static func getMockProductArray() -> [Product] {
         let product = Product(
             productId: "0001111041600",
+            brand: "Kroger",
             description: "Kroger 2% Reduced Fat Milk",
             items: [
                 ProductItem(

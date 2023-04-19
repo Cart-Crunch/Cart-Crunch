@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let searchItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
             let watchlistItem = UITabBarItem(title: "Watchlist", image: UIImage(systemName: "bookmark"), selectedImage: UIImage(systemName: "bookmark"))
             let settingsItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear"))
+            let storeLocatorItem = UITabBarItem(title: "Locations", image: UIImage(systemName: "mappin.and.ellipse"), selectedImage: UIImage(systemName: "mappin.and.ellipse"))
             
             //make viewcontroller/navigationcontroller for each screen here
             let homeScreenVC = HomeScreenViewController()
@@ -40,11 +41,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let settingsScreenVC = SettingsViewController()
             let navigationControllerSettings = UINavigationController(rootViewController: settingsScreenVC)
             
+            let storeLocatorVC = StoreLocatorViewController()
+            let navigationControllerStoreLocator = UINavigationController(rootViewController: storeLocatorVC)
+            
            //add the navigationcontrollers to the tab bar
             tabBarController.viewControllers = [
                 navigationControllerHome,
                 navigationControllerSearch,
                 navigationControllerWatchlist,
+                navigationControllerStoreLocator,
                 navigationControllerSettings
             ]
             
@@ -55,6 +60,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
             
             //handle tab bar appearance here
+            tabBarController.tabBar.backgroundColor = UIColor(red: 233/255, green: 233/255, blue: 233/255, alpha: 1.0)
             
             //handle navigation appearance here
             
@@ -63,6 +69,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationControllerSearch.tabBarItem = searchItem
             navigationControllerWatchlist.tabBarItem = watchlistItem
             navigationControllerSettings.tabBarItem = settingsItem
+            navigationControllerStoreLocator.tabBarItem = storeLocatorItem
         }
     }
     

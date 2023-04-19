@@ -28,6 +28,9 @@
 		FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */; };
 		FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */; };
 		FDB6CEAE29E73C3E00C407F1 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */; };
+		FDBD45AC29F03A12009A09D2 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = FDBD45AB29F03A12009A09D2 /* Nuke */; };
+		FDDCD35429EDD248001375C1 /* StoreLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */; };
+		FDDCD35629EDE89B001375C1 /* HomeScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,8 @@
 		FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
 		FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewController.swift; sourceTree = "<group>"; };
+		FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B399E02929F060AB004A8D8F /* ParseSwift in Frameworks */,
+				FDBD45AC29F03A12009A09D2 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +140,8 @@
 				FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */,
 				FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */,
 				FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */,
+				FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */,
+				FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */,
 				B399DFE629E6E16A004A8D8F /* Assets.xcassets */,
 				B399DFE829E6E16A004A8D8F /* LaunchScreen.storyboard */,
 				B399DFEB29E6E16A004A8D8F /* Info.plist */,
@@ -204,6 +212,7 @@
 			name = "Cart Crunch";
 			packageProductDependencies = (
 				B399E02829F060AB004A8D8F /* ParseSwift */,
+				FDBD45AB29F03A12009A09D2 /* Nuke */,
 			);
 			productName = "Cart Crunch";
 			productReference = B399DFD729E6E169004A8D8F /* Cart Crunch.app */;
@@ -279,6 +288,7 @@
 			mainGroup = B399DFCE29E6E169004A8D8F;
 			packageReferences = (
 				B399E02729F060AB004A8D8F /* XCRemoteSwiftPackageReference "Parse-Swift" */,
+				FDBD45AA29F03A11009A09D2 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = B399DFD829E6E169004A8D8F /* Products */;
 			projectDirPath = "";
@@ -325,6 +335,7 @@
 			files = (
 				FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */,
 				FDB6CEAE29E73C3E00C407F1 /* HomeScreenViewController.swift in Sources */,
+				FDDCD35429EDD248001375C1 /* StoreLocatorViewController.swift in Sources */,
 				B399DFE529E6E169004A8D8F /* Cart_Crunch.xcdatamodeld in Sources */,
 				B399E01129E70056004A8D8F /* NetworkManager.swift in Sources */,
 				B399E01829E70F87004A8D8F /* Store.swift in Sources */,
@@ -335,6 +346,7 @@
 				FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */,
 				B399DFDB29E6E169004A8D8F /* AppDelegate.swift in Sources */,
 				FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */,
+				FDDCD35629EDE89B001375C1 /* HomeScreenTableViewCell.swift in Sources */,
 				B399E00E29E6F78A004A8D8F /* SceneDelegate.swift in Sources */,
 				B399E01429E708ED004A8D8F /* Product.swift in Sources */,
 			);
@@ -678,6 +690,12 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
+		FDBD45AA29F03A11009A09D2 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -687,6 +705,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B399E02729F060AB004A8D8F /* XCRemoteSwiftPackageReference "Parse-Swift" */;
 			productName = ParseSwift;
+		FDBD45AB29F03A12009A09D2 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FDBD45AA29F03A11009A09D2 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 /* End XCSwiftPackageProductDependency section */
 
