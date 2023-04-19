@@ -20,6 +20,9 @@
 		B399E01429E708ED004A8D8F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E01329E708ED004A8D8F /* Product.swift */; };
 		B399E01629E70E24004A8D8F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E01529E70E24004A8D8F /* LocationManager.swift */; };
 		B399E01829E70F87004A8D8F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E01729E70F87004A8D8F /* Store.swift */; };
+		B399E02629F0606D004A8D8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E02529F0606D004A8D8F /* User.swift */; };
+		B399E02929F060AB004A8D8F /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B399E02829F060AB004A8D8F /* ParseSwift */; };
+		B399E02B29F060E4004A8D8F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B399E02A29F060E4004A8D8F /* .gitignore */; };
 		E396B4F729E76F2E006E737E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E396B4F629E76F2E006E737E /* Constants.swift */; };
 		FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */; };
 		FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */; };
@@ -62,6 +65,8 @@
 		B399E01329E708ED004A8D8F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		B399E01529E70E24004A8D8F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B399E01729E70F87004A8D8F /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		B399E02529F0606D004A8D8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B399E02A29F060E4004A8D8F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E396B4F629E76F2E006E737E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B399E02929F060AB004A8D8F /* ParseSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +103,7 @@
 		B399DFCE29E6E169004A8D8F = {
 			isa = PBXGroup;
 			children = (
+				B399E02A29F060E4004A8D8F /* .gitignore */,
 				B399DFD929E6E169004A8D8F /* Cart Crunch */,
 				B399DFF329E6E16A004A8D8F /* Cart CrunchTests */,
 				B399DFFD29E6E16A004A8D8F /* Cart CrunchUITests */,
@@ -166,6 +173,7 @@
 			children = (
 				B399E01329E708ED004A8D8F /* Product.swift */,
 				B399E01729E70F87004A8D8F /* Store.swift */,
+				B399E02529F0606D004A8D8F /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -194,6 +202,9 @@
 			dependencies = (
 			);
 			name = "Cart Crunch";
+			packageProductDependencies = (
+				B399E02829F060AB004A8D8F /* ParseSwift */,
+			);
 			productName = "Cart Crunch";
 			productReference = B399DFD729E6E169004A8D8F /* Cart Crunch.app */;
 			productType = "com.apple.product-type.application";
@@ -266,6 +277,9 @@
 				Base,
 			);
 			mainGroup = B399DFCE29E6E169004A8D8F;
+			packageReferences = (
+				B399E02729F060AB004A8D8F /* XCRemoteSwiftPackageReference "Parse-Swift" */,
+			);
 			productRefGroup = B399DFD829E6E169004A8D8F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -283,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B399DFEA29E6E16A004A8D8F /* LaunchScreen.storyboard in Resources */,
+				B399E02B29F060E4004A8D8F /* .gitignore in Resources */,
 				B399DFE729E6E16A004A8D8F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +329,7 @@
 				B399E01129E70056004A8D8F /* NetworkManager.swift in Sources */,
 				B399E01829E70F87004A8D8F /* Store.swift in Sources */,
 				B399E01629E70E24004A8D8F /* LocationManager.swift in Sources */,
+				B399E02629F0606D004A8D8F /* User.swift in Sources */,
 				B399DFDF29E6E169004A8D8F /* ProductDetailViewController.swift in Sources */,
 				E396B4F729E76F2E006E737E /* Constants.swift in Sources */,
 				FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */,
@@ -654,6 +670,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B399E02729F060AB004A8D8F /* XCRemoteSwiftPackageReference "Parse-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/parse-community/Parse-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B399E02829F060AB004A8D8F /* ParseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B399E02729F060AB004A8D8F /* XCRemoteSwiftPackageReference "Parse-Swift" */;
+			productName = ParseSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B399DFE329E6E169004A8D8F /* Cart_Crunch.xcdatamodeld */ = {
