@@ -29,6 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let storeLocatorItem = UITabBarItem(title: "Locations", image: UIImage(systemName: "mappin.and.ellipse"), selectedImage: UIImage(systemName: "mappin.and.ellipse"))
             
             //make viewcontroller/navigationcontroller for each screen here
+            let landingPageVC = LandingPageViewController()
+            let navigationControllerLandingPage = UINavigationController(rootViewController: landingPageVC)
+            
             let homeScreenVC = HomeScreenViewController()
             let navigationControllerHome = UINavigationController(rootViewController: homeScreenVC)
             
@@ -55,7 +58,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             //initialize here
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = tabBarController
+            window.rootViewController = navigationControllerLandingPage
             self.window = window
             window.makeKeyAndVisible()
             
