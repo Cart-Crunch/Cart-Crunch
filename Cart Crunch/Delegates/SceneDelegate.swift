@@ -23,20 +23,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             //create tab bar items
             let homeItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house"))
-            let searchItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
-            let watchlistItem = UITabBarItem(title: "Watchlist", image: UIImage(systemName: "bookmark"), selectedImage: UIImage(systemName: "bookmark"))
             let settingsItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear"))
             let storeLocatorItem = UITabBarItem(title: "Locations", image: UIImage(systemName: "mappin.and.ellipse"), selectedImage: UIImage(systemName: "mappin.and.ellipse"))
             
             //make viewcontroller/navigationcontroller for each screen here
+            let landingPageVC = LandingPageViewController()
+            let logInScreenVC = LogInViewController()
+            let signUpScreenVC = SignUpViewController()
+            let navigationControllerLandingPage = UINavigationController(rootViewController: landingPageVC)
+            
             let homeScreenVC = HomeScreenViewController()
             let navigationControllerHome = UINavigationController(rootViewController: homeScreenVC)
-            
-            let searchScreenVC = SearchViewController()
-            let navigationControllerSearch = UINavigationController(rootViewController: searchScreenVC)
-            
-            let watchListScreenVC = WatchListViewController()
-            let navigationControllerWatchlist = UINavigationController(rootViewController: watchListScreenVC)
             
             let settingsScreenVC = SettingsViewController()
             let navigationControllerSettings = UINavigationController(rootViewController: settingsScreenVC)
@@ -47,15 +44,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
            //add the navigationcontrollers to the tab bar
             tabBarController.viewControllers = [
                 navigationControllerHome,
-                navigationControllerSearch,
-                navigationControllerWatchlist,
                 navigationControllerStoreLocator,
                 navigationControllerSettings
             ]
             
             //initialize here
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = tabBarController
+            window.rootViewController = navigationControllerLandingPage
             self.window = window
             window.makeKeyAndVisible()
             
@@ -66,8 +61,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             //attach the navigation controllers to the tab bar items
             navigationControllerHome.tabBarItem = homeItem
-            navigationControllerSearch.tabBarItem = searchItem
-            navigationControllerWatchlist.tabBarItem = watchlistItem
             navigationControllerSettings.tabBarItem = settingsItem
             navigationControllerStoreLocator.tabBarItem = storeLocatorItem
         }
