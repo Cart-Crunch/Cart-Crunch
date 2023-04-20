@@ -28,6 +28,8 @@
 		FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */; };
 		FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */; };
 		FD9CB93729F1882B00CDE5FA /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB93629F1882B00CDE5FA /* LandingPageViewController.swift */; };
+		FD9CB93929F18CFE00CDE5FA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB93829F18CFE00CDE5FA /* LogInViewController.swift */; };
+		FD9CB93B29F18D1000CDE5FA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB93A29F18D1000CDE5FA /* SignUpViewController.swift */; };
 		FDB6CEAE29E73C3E00C407F1 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */; };
 		FDBD45AC29F03A12009A09D2 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = FDBD45AB29F03A12009A09D2 /* Nuke */; };
 		FDDCD35429EDD248001375C1 /* StoreLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */; };
@@ -76,6 +78,8 @@
 		FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
 		FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FD9CB93629F1882B00CDE5FA /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
+		FD9CB93829F18CFE00CDE5FA /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		FD9CB93A29F18D1000CDE5FA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewController.swift; sourceTree = "<group>"; };
 		FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTableViewCell.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */,
 				FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */,
 				FD9CB93629F1882B00CDE5FA /* LandingPageViewController.swift */,
+				FD9CB93829F18CFE00CDE5FA /* LogInViewController.swift */,
+				FD9CB93A29F18D1000CDE5FA /* SignUpViewController.swift */,
 				B399DFE629E6E16A004A8D8F /* Assets.xcassets */,
 				B399DFE829E6E16A004A8D8F /* LaunchScreen.storyboard */,
 				B399DFEB29E6E16A004A8D8F /* Info.plist */,
@@ -338,10 +344,12 @@
 			files = (
 				FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */,
 				FDB6CEAE29E73C3E00C407F1 /* HomeScreenViewController.swift in Sources */,
+				FD9CB93929F18CFE00CDE5FA /* LogInViewController.swift in Sources */,
 				FDDCD35429EDD248001375C1 /* StoreLocatorViewController.swift in Sources */,
 				B399DFE529E6E169004A8D8F /* Cart_Crunch.xcdatamodeld in Sources */,
 				B399E03029F06BE9004A8D8F /* User.swift in Sources */,
 				B399E01129E70056004A8D8F /* NetworkManager.swift in Sources */,
+				FD9CB93B29F18D1000CDE5FA /* SignUpViewController.swift in Sources */,
 				B399E01829E70F87004A8D8F /* Store.swift in Sources */,
 				B399E01629E70E24004A8D8F /* LocationManager.swift in Sources */,
 				FD9CB93729F1882B00CDE5FA /* LandingPageViewController.swift in Sources */,

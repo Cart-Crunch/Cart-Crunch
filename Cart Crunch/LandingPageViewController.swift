@@ -182,11 +182,11 @@ class LandingPageViewController: UIViewController {
    
     //MARK: - Button functions
     @objc private func onGetStartedButtonTapped() {
-//        navigationController?.pushViewController(SignUpViewController(), animated: true)
+        navigationController?.pushViewController(SignUpViewController(), animated: true)
     }
    
     @objc private func onLogInButtonTapped() {
-//        navigationController?.pushViewController(LogInViewController(), animated: true)
+        navigationController?.pushViewController(LogInViewController(), animated: true)
     }
  }
 
