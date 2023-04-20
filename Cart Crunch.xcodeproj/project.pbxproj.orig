@@ -27,12 +27,12 @@
 		FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */; };
 		FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */; };
 		FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */; };
-
-
+<<<<<<< HEAD
+		FD9CB93729F1882B00CDE5FA /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB93629F1882B00CDE5FA /* LandingPageViewController.swift */; };
 		FD9CB93929F18CFE00CDE5FA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB93829F18CFE00CDE5FA /* LogInViewController.swift */; };
 		FD9CB93B29F18D1000CDE5FA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB93A29F18D1000CDE5FA /* SignUpViewController.swift */; };
-
-
+=======
+>>>>>>> parent of d6c0a04 (Adding the landing page and changed scene delegate to test landing page was working)
 		FDB6CEAE29E73C3E00C407F1 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */; };
 		FDBD45AC29F03A12009A09D2 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = FDBD45AB29F03A12009A09D2 /* Nuke */; };
 		FDDCD35429EDD248001375C1 /* StoreLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */; };
@@ -80,12 +80,12 @@
 		FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
 		FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-
-
+<<<<<<< HEAD
+		FD9CB93629F1882B00CDE5FA /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
 		FD9CB93829F18CFE00CDE5FA /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		FD9CB93A29F18D1000CDE5FA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-
-
+=======
+>>>>>>> parent of d6c0a04 (Adding the landing page and changed scene delegate to test landing page was working)
 		FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewController.swift; sourceTree = "<group>"; };
 		FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTableViewCell.swift; sourceTree = "<group>"; };
@@ -154,12 +154,12 @@
 				FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */,
 				FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */,
 				FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */,
-
-
+<<<<<<< HEAD
+				FD9CB93629F1882B00CDE5FA /* LandingPageViewController.swift */,
 				FD9CB93829F18CFE00CDE5FA /* LogInViewController.swift */,
 				FD9CB93A29F18D1000CDE5FA /* SignUpViewController.swift */,
-
-
+=======
+>>>>>>> parent of d6c0a04 (Adding the landing page and changed scene delegate to test landing page was working)
 				B399DFE629E6E16A004A8D8F /* Assets.xcassets */,
 				B399DFE829E6E16A004A8D8F /* LaunchScreen.storyboard */,
 				B399DFEB29E6E16A004A8D8F /* Info.plist */,
