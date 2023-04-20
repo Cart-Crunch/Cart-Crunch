@@ -39,14 +39,13 @@ class LogInViewController: UIViewController {
        return textField
    }()
       
-   let signUpButton: UIButton = {
+   let logInButton: UIButton = {
        let button = UIButton()
        button.backgroundColor = UIColor(red: 249/255, green: 118/255, blue: 82/255, alpha: 1)
        button.setTitle("Log In", for: .normal)
        button.setTitleColor(UIColor.white, for: .normal)
        button.layer.cornerRadius = 5
        button.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 20)
-//           button.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
        return button
    }()
       
@@ -58,11 +57,17 @@ class LogInViewController: UIViewController {
        screenTitle.textColor = UIColor(red: 52/255, green: 76/255, blue: 93/255, alpha: 1)
        return screenTitle
    }()
+    
+   //MARK: - add button targets
+    @objc private func addButtonTargets() {
+        logInButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
+    }
 
     //MARK: - viewDidLoad
    override func viewDidLoad() {
        super.viewDidLoad()
        setupUI()
+       addButtonTargets()
        view.backgroundColor = .white
    }
   
@@ -70,19 +75,17 @@ class LogInViewController: UIViewController {
    private func setupUI() {
        view.addSubview(emailField)
        view.addSubview(passwordField)
-       view.addSubview(signUpButton)
+       view.addSubview(logInButton)
        view.addSubview(screenTitle)
       
        emailField.translatesAutoresizingMaskIntoConstraints = false
        passwordField.translatesAutoresizingMaskIntoConstraints = false
-       signUpButton.translatesAutoresizingMaskIntoConstraints = false
+       logInButton.translatesAutoresizingMaskIntoConstraints = false
        screenTitle.translatesAutoresizingMaskIntoConstraints = false
       
        NSLayoutConstraint.activate([
            screenTitle.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 50),
            screenTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-
-
 
            emailField.topAnchor.constraint(equalTo: screenTitle.bottomAnchor, constant: 50),
            emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
@@ -94,11 +97,53 @@ class LogInViewController: UIViewController {
            passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
            passwordField.heightAnchor.constraint(equalToConstant: 45),
           
-           signUpButton.heightAnchor.constraint(equalToConstant: 50),
-           signUpButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -75),
-           signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-           signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+           logInButton.heightAnchor.constraint(equalToConstant: 50),
+           logInButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -75),
+           logInButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+           logInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
        ])
    }
+    
+    //MARK: - Login functions
+    @objc private func logInButtonTapped(){
+        //make sure all of the fields are non-nil and non-empty
+        guard let email = emailField.text,
+              let password = passwordField.text,
+              !email.isEmpty,
+              !password.isEmpty else {
+            showMissingFieldsAlert()
+            return
+        }
+        
+        User.login(username: email, password: password) { [weak self]
+            result in
+            
+            switch result {
+            case .success(let user):
+                print("Successfully logged in user: \(user)")
+                
+                //post a notification that the user has successfully logged in
+                NotificationCenter.default.post(name: Notification.Name("login"), object: nil)
+                
+            case .failure(let error):
+                self?.showAlert(description: error.localizedDescription)
+            }
+        }
+    }
+    
+    private func showAlert(description: String?) {
+        let alertController = UIAlertController(title: "Unable to Sign Up", message: description ?? "Unknown error", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+        
+    private func showMissingFieldsAlert() {
+        let alertController = UIAlertController(title: "Oops...", message: "We need all of the fields filled out in order to sign you up.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
 }
 
