@@ -24,8 +24,6 @@
 		B399E03029F06BE9004A8D8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399E02F29F06BE9004A8D8F /* User.swift */; };
 		B399E03229F0B34F004A8D8F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B399E03129F0B34F004A8D8F /* .gitignore */; };
 		E396B4F729E76F2E006E737E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E396B4F629E76F2E006E737E /* Constants.swift */; };
-		FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */; };
-		FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */; };
 		FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */; };
 		FD9CB93729F1882B00CDE5FA /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB93629F1882B00CDE5FA /* LandingPageViewController.swift */; };
 		FD9CB93D29F1A32A00CDE5FA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB93C29F1A32A00CDE5FA /* LogInViewController.swift */; };
@@ -74,8 +72,6 @@
 		B399E02F29F06BE9004A8D8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B399E03129F0B34F004A8D8F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E396B4F629E76F2E006E737E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
 		FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FD9CB93629F1882B00CDE5FA /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
 		FD9CB93C29F1A32A00CDE5FA /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -142,8 +138,6 @@
 				B399E00D29E6F78A004A8D8F /* SceneDelegate.swift */,
 				B399DFDA29E6E169004A8D8F /* AppDelegate.swift */,
 				B399DFDE29E6E169004A8D8F /* ProductDetailViewController.swift */,
-				FD54F1C629E6FDDA00315F99 /* SearchViewController.swift */,
-				FD54F1C829E6FDF500315F99 /* WatchListViewController.swift */,
 				FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */,
 				FDB6CEAD29E73C3E00C407F1 /* HomeScreenViewController.swift */,
 				FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */,
@@ -342,7 +336,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD54F1C729E6FDDA00315F99 /* SearchViewController.swift in Sources */,
 				FDB6CEAE29E73C3E00C407F1 /* HomeScreenViewController.swift in Sources */,
 				FD9CB93D29F1A32A00CDE5FA /* LogInViewController.swift in Sources */,
 				FDDCD35429EDD248001375C1 /* StoreLocatorViewController.swift in Sources */,
@@ -357,7 +350,6 @@
 				E396B4F729E76F2E006E737E /* Constants.swift in Sources */,
 				FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */,
 				B399DFDB29E6E169004A8D8F /* AppDelegate.swift in Sources */,
-				FD54F1C929E6FDF500315F99 /* WatchListViewController.swift in Sources */,
 				FDDCD35629EDE89B001375C1 /* HomeScreenTableViewCell.swift in Sources */,
 				B399E00E29E6F78A004A8D8F /* SceneDelegate.swift in Sources */,
 				B399E01429E708ED004A8D8F /* Product.swift in Sources */,
