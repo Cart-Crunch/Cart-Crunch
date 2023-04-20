@@ -64,7 +64,7 @@ class HomeScreenTableViewCell: UITableViewCell {
     //MARK: - Configuration
     //this is hard coded for now but eventually we will pass data from the api here
     //we can use the nuke package again to grab the image from the api
-    func configure(with product: Product) {
+    func configure(with product: Product, findImageURL: (_ images: [ImageMetaData], _ sizeName: String) -> String?) {
         
         productNameLabel.text = product.description
         
@@ -78,16 +78,17 @@ class HomeScreenTableViewCell: UITableViewCell {
         
         productNewPriceLabel.text = String(product.items.first?.price?.regular ?? 0)
         
-        let desiredSizeName = "medium" // Change this to the size name you want to use
-        guard let imageURLString = findImageURL(for: product.images.first?.sizes ?? [], sizeName: desiredSizeName) else { return }
-        let imageURL = URL(string: imageURLString)
-        Nuke.loadImage(with: imageURL!, into: productImageView)
+        let desiredSizeName = "medium"
+        guard let imageURLString = findImageURL(product.images.first?.sizes ?? [], desiredSizeName) else { return }
+        if let imageURL = URL(string: imageURLString) {
+            Nuke.loadImage(with: imageURL, into: productImageView)
+        }
 
     }
     
-    func findImageURL(for images: [ImageMetaData], sizeName: String) -> String? {
-        return images.first(where: { $0.size == sizeName })?.url
-    }
+//    func findImageURL(for images: [ImageMetaData], sizeName: String) -> String? {
+//        return images.first(where: { $0.size == sizeName })?.url
+//    }
 
     //MARK: - Setup UI
     private func setupUI() {
@@ -110,6 +111,7 @@ class HomeScreenTableViewCell: UITableViewCell {
             
             productNameLabel.topAnchor.constraint(equalTo: productImageView.topAnchor),
             productNameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 10),
+            productNameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 220), 
             
             productBrandNameLabel.topAnchor.constraint(equalTo: productNameLabel.bottomAnchor, constant: 15),
             productBrandNameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 10),

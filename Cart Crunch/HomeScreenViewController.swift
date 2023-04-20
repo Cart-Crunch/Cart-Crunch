@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Nuke
 
 class HomeScreenViewController: UIViewController {
+    
+    let imagePrefetcher = ImagePrefetcher()
     
     //MARK: - UIComponents
     let tableView: UITableView = {
@@ -36,6 +39,10 @@ class HomeScreenViewController: UIViewController {
     //MARK: - Product object array
     var displayedProducts: [Product] = []
     
+    func findImageURL(for images: [ImageMetaData], sizeName: String) -> String? {
+        return images.first(where: { $0.size == sizeName })?.url
+    }
+    
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +59,11 @@ class HomeScreenViewController: UIViewController {
             case .success(let products):
                 DispatchQueue.main.async {
                     self.displayedProducts = products
+                    
+                    // Prefetch images
+                    let urls = products.compactMap { self.findImageURL(for: $0.images.first?.sizes ?? [], sizeName: "medium") }.compactMap { URL(string: $0) }
+                    self.imagePrefetcher.startPrefetching(with: urls)
+                    
                     self.tableView.reloadData()
                     print(self.displayedProducts)
                 }
@@ -93,7 +105,7 @@ extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
         }
         //configuring the cells for reuse so they are all the same
         let product = displayedProducts[indexPath.row]
-        cell.configure(with: product)
+        cell.configure(with: product, findImageURL: self.findImageURL)
         cell.backgroundColor = .white
         return cell
     }
