@@ -93,7 +93,6 @@ class LogInViewController: UIViewController {
             signUpButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -75),
             signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            
         ])
     }
 
