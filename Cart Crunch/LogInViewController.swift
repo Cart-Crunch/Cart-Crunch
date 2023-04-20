@@ -10,9 +10,9 @@ import UIKit
 class LogInViewController: UIViewController {
   
     //MARK: - UIComponents
-   let emailField: UITextField = {
+   let usernameField: UITextField = {
        let textField = UITextField()
-       textField.placeholder = "Email"
+       textField.placeholder = "Username"
        textField.borderStyle = .roundedRect
        textField.layer.borderWidth = 2.0
        textField.layer.cornerRadius = 5
@@ -73,12 +73,12 @@ class LogInViewController: UIViewController {
   
     //MARK: - setupUI
    private func setupUI() {
-       view.addSubview(emailField)
+       view.addSubview(usernameField)
        view.addSubview(passwordField)
        view.addSubview(logInButton)
        view.addSubview(screenTitle)
       
-       emailField.translatesAutoresizingMaskIntoConstraints = false
+       usernameField.translatesAutoresizingMaskIntoConstraints = false
        passwordField.translatesAutoresizingMaskIntoConstraints = false
        logInButton.translatesAutoresizingMaskIntoConstraints = false
        screenTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -87,12 +87,12 @@ class LogInViewController: UIViewController {
            screenTitle.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 50),
            screenTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 
-           emailField.topAnchor.constraint(equalTo: screenTitle.bottomAnchor, constant: 50),
-           emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-           emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-           emailField.heightAnchor.constraint(equalToConstant: 45),
+           usernameField.topAnchor.constraint(equalTo: screenTitle.bottomAnchor, constant: 50),
+           usernameField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+           usernameField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+           usernameField.heightAnchor.constraint(equalToConstant: 45),
           
-           passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 20),
+           passwordField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 20),
            passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
            passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
            passwordField.heightAnchor.constraint(equalToConstant: 45),
@@ -107,15 +107,15 @@ class LogInViewController: UIViewController {
     //MARK: - Login functions
     @objc private func logInButtonTapped(){
         //make sure all of the fields are non-nil and non-empty
-        guard let email = emailField.text,
+        guard let username = usernameField.text,
               let password = passwordField.text,
-              !email.isEmpty,
+              !username.isEmpty,
               !password.isEmpty else {
             showMissingFieldsAlert()
             return
         }
         
-        User.login(username: email, password: password) { [weak self]
+        User.login(username: username, password: password) { [weak self]
             result in
             
             switch result {
@@ -132,7 +132,7 @@ class LogInViewController: UIViewController {
     }
     
     private func showAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Sign Up", message: description ?? "Unknown error", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Unable to log in", message: description ?? "Unknown error", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
