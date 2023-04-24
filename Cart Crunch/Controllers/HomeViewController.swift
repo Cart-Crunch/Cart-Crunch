@@ -7,14 +7,23 @@
 
 import UIKit
 
-class HomeScreenViewController: UIViewController {
+protocol HomeScreenViewControllerDelegate: AnyObject {
+    func didSelectProduct(_ product: Product)
+}
+
+class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
+    
+    public weak var delegate: HomeScreenViewControllerDelegate?
+    
+    let productTableView = ProductTableViewCell()
+    
     
     //MARK: - UIComponents
     let tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = .white
         table.allowsSelection = true
-        table.register(HomeScreenTableViewCell.self, forCellReuseIdentifier: HomeScreenTableViewCell.identifier)
+        table.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
         return table
     }()
     
@@ -34,7 +43,7 @@ class HomeScreenViewController: UIViewController {
     let networkManager = NetworkManager()
     
     //MARK: - Product object array
-    var displayedProducts: [Product] = []
+    var product: [Product] = []
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -51,9 +60,9 @@ class HomeScreenViewController: UIViewController {
             switch result {
             case .success(let products):
                 DispatchQueue.main.async {
-                    self.displayedProducts = products
+                    self.product = products
                     self.tableView.reloadData()
-                    print(self.displayedProducts)
+                    print(self.product)
                 }
                 
             case .failure(let error):
@@ -61,8 +70,17 @@ class HomeScreenViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - hide all backButtonTitles
+    override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(true)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+    }
+    
     //MARK: - setupUI function
     private func setupUI() {
+        productTableView.delegate = self
         view.addSubview(searchBar)
         view.addSubview(tableView)
         
@@ -80,25 +98,64 @@ class HomeScreenViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+    
+    // MARK: ProductTableViewDelegate
+    
+    func productTableView(_ product: ProductTableViewCell, didSelectProduct _: Product) {
+        return
+    }
 }
 
 extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayedProducts.count
+        return product.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenTableViewCell.identifier, for: indexPath) as? HomeScreenTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell else {
             fatalError("Table view could not load")
         }
         //configuring the cells for reuse so they are all the same
-        let product = displayedProducts[indexPath.row]
+        let product = product[indexPath.row]
         cell.configure(with: product)
         cell.backgroundColor = .white
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //this is where we will navigate to the detail view for the product
+        tableView.deselectRow(at: indexPath, animated: true)
+        let product = product[indexPath.row]
+        delegate?.didSelectProduct(product)
+        
+        // Open Product Detail Controller for Product
+        let productVC = ProductDetailViewController()
+        // unsubscribe product data to the detail view controller
+        productVC.product = product
+        productVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(productVC, animated: true)
+
     }
+
 }
+
+
+
+//#if canImport(SwiftUI) && DEBUG
+//import SwiftUI
+//
+//let deviceName: [String] = [
+//    "iPhone 14 Pro Max"
+//]
+//
+//@available(iOS 13.0, *)
+//struct HomeScreenViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        ForEach(deviceName, id: \.self) { deviceName in
+//            UIViewControllerPreview {
+//                UIViewController()
+//            }.previewDevice(PreviewDevice(rawValue: deviceName))
+//                .previewDisplayName(deviceName)
+//        }
+//    }
+//}
+//#endif
