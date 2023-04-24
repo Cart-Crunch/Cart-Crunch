@@ -24,15 +24,7 @@ class StoreLocatorViewController: UIViewController, CLLocationManagerDelegate {
     }()
     
     private let manager = CLLocationManager()
-    
-//    private let locationSearchBar: UISearchBar = {
-//
-//        let searchBar = UISearchBar()
-//
-//        return searchBar
-//
-//    }()
-    
+ 
     private let watchListButton: UIButton = {
         
         let button = UIButton()
@@ -159,15 +151,6 @@ class StoreLocatorViewController: UIViewController, CLLocationManagerDelegate {
         view.addSubview(mapView)
         
         mapView.frame = view.bounds
-        
-        // TODO: Set map viewing region and scale
-        // need to define coordinate
-        
-        
-        
-        // TODO: add annotation to the map view
-        
-        
     }
     
     // set up our sheet presentation
