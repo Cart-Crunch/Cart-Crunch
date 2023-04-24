@@ -152,7 +152,7 @@ extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
 //    static var previews: some View {
 //        ForEach(deviceName, id: \.self) { deviceName in
 //            UIViewControllerPreview {
-//                UIViewController()
+//                HomeScreenViewController()
 //            }.previewDevice(PreviewDevice(rawValue: deviceName))
 //                .previewDisplayName(deviceName)
 //        }

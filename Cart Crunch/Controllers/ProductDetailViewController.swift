@@ -13,31 +13,20 @@ class ProductDetailViewController: UIViewController {
     
     var product: Product?
     
-    //MARK: - Network manager
+    // MARK: - Network manager
     //so we can access the methods from this class
     let networkManager = NetworkManager()
     
-//    lazy var mutateProductUIView: UIView = {
-//        let productContainer = UIView()
-//        productContainer.frame.size.width = 357
-//        productContainer.frame.size.height = 74
-////        productContainer.sizeToFit()
-//        productContainer.translatesAutoresizingMaskIntoConstraints = false
-//        productContainer.backgroundColor = .purple
-//        productContainer.addSubview(watchListButton)
-//        return productContainer
-//    }()
-    
-    let watchListButton: UIButton = {
+    lazy var watchListButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Add to WatchList", for: .normal)
-        button.frame.size.width = 357
-        button.frame.size.height = 74
+        button.setTitle("+ Add to WatchList", for: .normal)
+        button.setImage(UIImage(systemName: "plus_icon"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = hexStringToUIColor(hex: "#F9F9F9")
-        button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .semibold)
+        button.titleLabel?.font = .systemFont(ofSize: 20.0, weight: .semibold)
+        button.layer.cornerRadius = 4
+        button.layer.borderWidth = 2
         button.setTitleColor(.black, for: .normal)
-        button.contentHorizontalAlignment = .fill
         // @Deprecated: Can't find a better Solution right now
         button.titleEdgeInsets = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         return button
@@ -99,11 +88,6 @@ class ProductDetailViewController: UIViewController {
         
     }()
     
-    //we need to set up a table view to load similar products here
-    //declare a tableview that will call the api and display similar products
-    //that will allow users to navigate to those products.
-    
-    //view loader
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -162,33 +146,16 @@ class ProductDetailViewController: UIViewController {
             productNameLabel.topAnchor.constraint(equalTo: productPrice.bottomAnchor, constant: 10),
             
             
-//            productPrice.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
-            
-            //product name label constraints
-//            productNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-//            productNameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -104),
-//            productNameLabel.topAnchor.constraint(equalTo: productPrice.bottomAnchor, constant: -40),
-//            productNameLabel.bottomAnchor.constraint(equalTo: watchListButton.topAnchor, constant: -209),
-
-//            productNameLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 100),
-//            productNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            
             // product category label constrains
+            productCategoryLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             productCategoryLabel.topAnchor.constraint(equalTo: productNameLabel.bottomAnchor, constant: 16),
-            productCategoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            
-            // Mutate Product Constrants
-            // This was for the possible of grouping the buttons in a container
-//            mutateProductUIView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-//            mutateProductUIView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-//            mutateProductUIView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            mutateProductUIView.topAnchor.constraint(equalTo: productNameLabel.bottomAnchor, constant: 209),
             
             // WatchList Button
             watchListButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             watchListButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             watchListButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            watchListButton.topAnchor.constraint(equalTo: productNameLabel.bottomAnchor, constant: 209),
+            watchListButton.widthAnchor.constraint(equalToConstant: 318),
+            watchListButton.heightAnchor.constraint(equalToConstant: 47),
         ])
     }
     

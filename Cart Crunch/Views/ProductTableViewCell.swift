@@ -17,8 +17,6 @@ class ProductTableViewCell: UITableViewCell {
     static let identifier = "ProductTableViewCell"
     public weak var delegate: ProductTableViewCellDelegate?
     
-
-    
     // MARK: - UIComponents
     
     let productNameLabel: UILabel = {
@@ -180,36 +178,6 @@ extension ProductTableViewCell: HomeScreenViewControllerDelegate {
     }
 }
 
-//extension ProductTableViewCell: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return products.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell else {
-//            fatalError("Table view could not load")
-//        }
-//        //configuring the cells for reuse so they are all the same
-//        let product = products[indexPath.row]
-//        cell.configure(with: product)
-//        cell.backgroundColor = .white
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        let product = products[indexPath.row]
-//        delegate?.didSelectProduct(product)
-//
-////        let detailVC = ProductDetailViewController()
-//
-//        //this is where we will navigate to the detail view for the product
-////        navigationController?.pushViewController(detailVC, animated: true)
-//
-//
-//    }
-//
-//}
 
 
 //#if canImport(SwiftUI) && DEBUG
@@ -219,8 +187,7 @@ extension ProductTableViewCell: HomeScreenViewControllerDelegate {
 //struct ProductTableViewCell_Preview: PreviewProvider {
 //    static var previews: some View {
 //        UIViewPreview {
-//            let productTable = ProductTableViewCell()
-//            return productTable
+//            ProductTableViewCell()
 //        }.previewLayout(.sizeThatFits)
 //            .padding(10)
 //    }

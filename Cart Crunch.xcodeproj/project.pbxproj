@@ -36,7 +36,6 @@
 		FDB6CEAE29E73C3E00C407F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6CEAD29E73C3E00C407F1 /* HomeViewController.swift */; };
 		FDBD45AC29F03A12009A09D2 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = FDBD45AB29F03A12009A09D2 /* Nuke */; };
 		FDDCD35429EDD248001375C1 /* StoreLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */; };
-		FDDCD35629EDE89B001375C1 /* HomeScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +87,6 @@
 		FD9CB93E29F1A33700CDE5FA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FDB6CEAD29E73C3E00C407F1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewController.swift; sourceTree = "<group>"; };
-		FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +149,6 @@
 				B399E00D29E6F78A004A8D8F /* SceneDelegate.swift */,
 				B399DFDA29E6E169004A8D8F /* AppDelegate.swift */,
 				FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */,
-				FDDCD35529EDE89B001375C1 /* HomeScreenTableViewCell.swift */,
 				FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */,
 				FD9CB93629F1882B00CDE5FA /* LandingPageViewController.swift */,
 				FD9CB93C29F1A32A00CDE5FA /* LogInViewController.swift */,
@@ -393,7 +390,6 @@
 				E396B4F729E76F2E006E737E /* Constants.swift in Sources */,
 				FD54F1CB29E6FE0700315F99 /* SettingsViewController.swift in Sources */,
 				B399DFDB29E6E169004A8D8F /* AppDelegate.swift in Sources */,
-				FDDCD35629EDE89B001375C1 /* HomeScreenTableViewCell.swift in Sources */,
 				B399E00E29E6F78A004A8D8F /* SceneDelegate.swift in Sources */,
 				E363D59E29F48C33008063D1 /* WatchListViewController.swift in Sources */,
 				B399E01429E708ED004A8D8F /* Product.swift in Sources */,
