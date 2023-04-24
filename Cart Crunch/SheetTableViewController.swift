@@ -4,6 +4,7 @@
 //
 //  Created by Jonathan Velez on 4/20/23.
 //
+
 import Foundation
 import UIKit
 
@@ -15,8 +16,6 @@ class SheetViewController: UITableViewController  {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-
-        //view.backgroundColor = .white
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ItemCell")
     }
@@ -38,7 +37,4 @@ class SheetViewController: UITableViewController  {
 
         return cell
     }
-
-
-
 }
