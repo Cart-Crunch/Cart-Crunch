@@ -91,7 +91,7 @@ class ProductTableViewCell: UITableViewCell {
         
         
         guard let priceRegular = findProductPricing(for: product.items.first!.price) else { return }
-        productOldPriceLabel.text = String(priceRegular)
+        productOldPriceLabel.text = "$\(String(priceRegular))"
         
         
         guard let pricePromo = findProductPromo(for: product.items.first!.price) else { return }

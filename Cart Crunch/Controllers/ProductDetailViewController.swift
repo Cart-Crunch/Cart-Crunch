@@ -132,6 +132,8 @@ class ProductDetailViewController: UIViewController {
             
             //product image constraints
             productImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            productImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            productImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             productImageView.widthAnchor.constraint(equalToConstant: 393),
             productImageView.heightAnchor.constraint(equalToConstant: 261),
             productImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -143,6 +145,7 @@ class ProductDetailViewController: UIViewController {
             
             // Product Description constraints
             productNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            productNameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             productNameLabel.topAnchor.constraint(equalTo: productPrice.bottomAnchor, constant: 10),
             
             
