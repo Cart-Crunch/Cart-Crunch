@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		816137A229F71EFA00663BC2 /* SheetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816137A129F71EFA00663BC2 /* SheetTableViewController.swift */; };
 		B399DFDB29E6E169004A8D8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399DFDA29E6E169004A8D8F /* AppDelegate.swift */; };
 		B399DFDF29E6E169004A8D8F /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B399DFDE29E6E169004A8D8F /* ProductDetailViewController.swift */; };
 		B399DFE529E6E169004A8D8F /* Cart_Crunch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B399DFE329E6E169004A8D8F /* Cart_Crunch.xcdatamodeld */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		816137A129F71EFA00663BC2 /* SheetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetTableViewController.swift; sourceTree = "<group>"; };
 		B399DFD729E6E169004A8D8F /* Cart Crunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cart Crunch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B399DFDA29E6E169004A8D8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B399DFDE29E6E169004A8D8F /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				B399DFDA29E6E169004A8D8F /* AppDelegate.swift */,
 				FD54F1CA29E6FE0700315F99 /* SettingsViewController.swift */,
 				FDDCD35329EDD248001375C1 /* StoreLocatorViewController.swift */,
+				816137A129F71EFA00663BC2 /* SheetTableViewController.swift */,
 				FD9CB93629F1882B00CDE5FA /* LandingPageViewController.swift */,
 				FD9CB93C29F1A32A00CDE5FA /* LogInViewController.swift */,
 				FD9CB93E29F1A33700CDE5FA /* SignUpViewController.swift */,
@@ -373,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDB6CEAE29E73C3E00C407F1 /* HomeViewController.swift in Sources */,
+				816137A229F71EFA00663BC2 /* SheetTableViewController.swift in Sources */,
 				FD9CB93D29F1A32A00CDE5FA /* LogInViewController.swift in Sources */,
 				FDDCD35429EDD248001375C1 /* StoreLocatorViewController.swift in Sources */,
 				E363D5A129F4A1C2008063D1 /* ProductTableViewCell.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 protocol HomeScreenViewControllerDelegate: AnyObject {
     func didSelectProduct(_ product: Product)
@@ -17,6 +18,8 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
     
     let productTableView = ProductTableViewCell()
     
+    
+    let imagePrefetcher = ImagePrefetcher()
     
     //MARK: - UIComponents
     let tableView: UITableView = {
@@ -44,6 +47,10 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
     
     //MARK: - Product object array
     var product: [Product] = []
+    
+    func findImageURL(for images: [ImageMetaData], sizeName: String) -> String? {
+        return images.first(where: { $0.size == sizeName })?.url
+    }
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
