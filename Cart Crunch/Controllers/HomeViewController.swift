@@ -18,11 +18,18 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
     
     let productTableView = ProductTableViewCell()
     
-    
     let imagePrefetcher = ImagePrefetcher()
     
     //MARK: - UIComponents
-    let tableView: UITableView = {
+    let tableViewWatchList: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = .white
+        table.allowsSelection = true
+        table.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
+        return table
+    }()
+    
+    let tableViewSearchResults: UITableView = {
         let table = UITableView()
         table.backgroundColor = .white
         table.allowsSelection = true
@@ -32,13 +39,28 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
     
     let searchBar: UISearchBar = {
         let search = UISearchBar()
-        search.placeholder = "Search"
+        search.placeholder = "Search for an item..."
         search.barStyle = .default
         search.backgroundImage = UIImage()
         search.searchTextField.layer.borderColor = UIColor.black.cgColor
         search.searchTextField.layer.borderWidth = 1
         search.searchTextField.layer.cornerRadius = 12
         return search
+    }()
+    
+    let watchListEmptyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Watchlist is empty, search an item to add it to your watchlist"
+        label.textColor = UIColor.lightGray
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        return label
+    }()
+        
+    let watchListEmptyImage: UIImageView = {
+        let watchListImage = UIImageView(image: UIImage(systemName: "cart.badge.plus"))
+        watchListImage.tintColor = UIColor.lightGray
+        return watchListImage
     }()
     
     //MARK: - Network manager
@@ -56,26 +78,15 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        tableView.delegate = self
-        tableView.dataSource = self
+        displayWatchListEmptyMessage()
+        tableViewWatchList.delegate = self
+        tableViewWatchList.dataSource = self
+        tableViewSearchResults.delegate = self
+        tableViewSearchResults.dataSource = self
+        searchBar.delegate = self
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Home"
-        
-        // MARK: - Networking
-        networkManager.fetchProducts(searchTerm: "Ham") { result in
-            switch result {
-            case .success(let products):
-                DispatchQueue.main.async {
-                    self.product = products
-                    self.tableView.reloadData()
-                    print(self.product)
-                }
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
     
     // MARK: - hide all backButtonTitles
@@ -89,27 +100,52 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
     private func setupUI() {
         productTableView.delegate = self
         view.addSubview(searchBar)
-        view.addSubview(tableView)
+        view.addSubview(tableViewWatchList)
         
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableViewWatchList.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             
-            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 25),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            tableViewWatchList.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 25),
+            tableViewWatchList.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableViewWatchList.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableViewWatchList.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
     
-    // MARK: ProductTableViewDelegate
-    
+    // MARK: - ProductTableViewDelegate
     func productTableView(_ product: ProductTableViewCell, didSelectProduct _: Product) {
         return
+    }
+    
+    //MARK: - Display watch list empty label and image
+    func displayWatchListEmptyMessage() {
+        //we will have to change this from displayed products to our array of watchlist items
+        //whenever we create it
+        if product.isEmpty {
+            view.addSubview(watchListEmptyImage)
+            view.addSubview(watchListEmptyLabel)
+                
+            watchListEmptyImage.translatesAutoresizingMaskIntoConstraints = false
+            watchListEmptyLabel.translatesAutoresizingMaskIntoConstraints = false
+                    
+            NSLayoutConstraint.activate([
+                watchListEmptyImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                watchListEmptyImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                watchListEmptyImage.widthAnchor.constraint(equalToConstant: 50),
+                watchListEmptyImage.heightAnchor.constraint(equalToConstant: 45),
+                            
+                watchListEmptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                watchListEmptyLabel.topAnchor.constraint(equalTo: watchListEmptyImage.bottomAnchor, constant: 10),
+                watchListEmptyLabel.widthAnchor.constraint(equalToConstant: 300),
+            ])
+                        
+            tableViewWatchList.isHidden = true
+        }
     }
 }
 
@@ -140,29 +176,45 @@ extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
         productVC.product = product
         productVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(productVC, animated: true)
-
     }
-
 }
 
-
-
-//#if canImport(SwiftUI) && DEBUG
-//import SwiftUI
-//
-//let deviceName: [String] = [
-//    "iPhone 14 Pro Max"
-//]
-//
-//@available(iOS 13.0, *)
-//struct HomeScreenViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        ForEach(deviceName, id: \.self) { deviceName in
-//            UIViewControllerPreview {
-//                HomeScreenViewController()
-//            }.previewDevice(PreviewDevice(rawValue: deviceName))
-//                .previewDisplayName(deviceName)
-//        }
-//    }
-//}
-//#endif
+//MARK: - Search bar extension/functions
+extension HomeScreenViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+                    //If the search bar is empty, remove the search results table from the view and show the watch list table
+                    tableViewSearchResults.removeFromSuperview()
+                    tableViewWatchList.isHidden = false
+                } else {
+                    //If the search bar has text, hide the watchlist table view and show the search results table
+                    tableViewWatchList.isHidden = true
+                    view.addSubview(tableViewSearchResults)
+                    tableViewSearchResults.translatesAutoresizingMaskIntoConstraints = false
+                    NSLayoutConstraint.activate([
+                        tableViewSearchResults.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 25),
+                        tableViewSearchResults.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                        tableViewSearchResults.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                        tableViewSearchResults.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+                    ])
+                    //update the search results table based on the search text here
+                    networkManager.fetchProducts(searchTerm: searchText) { result in
+                        switch result {
+                        case .success(let products):
+                            DispatchQueue.main.async {
+                                self.product = products
+                                
+                                // Prefetch images
+                                let urls = products.compactMap { self.findImageURL(for: $0.images.first?.sizes ?? [], sizeName: "medium") }.compactMap { URL(string: $0) }
+                                self.imagePrefetcher.startPrefetching(with: urls)
+                                
+                                self.tableViewSearchResults.reloadData()
+                            }
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                }
+    }
+}
