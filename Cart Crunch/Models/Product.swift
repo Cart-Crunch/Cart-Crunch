@@ -11,14 +11,14 @@ struct Product: Codable {
     let productId: String
     let brand: String?
     let description: String
-    let items: [ProductItem]
+    let items: [Price]
     let images: [Image]
     let timestamp: Date?
     
     /// Fun Fact:
     ///    adding an initializer allows us to omit the props in our parameter so it doesn't yell at us for missing a property
     
-    init(productId: String, brand: String?, description: String, items: [ProductItem], images: [Image], timestamp: Date?) {
+    init(productId: String, brand: String?, description: String, items: [Price], images: [Image], timestamp: Date?) {
         self.productId = productId
         self.brand = brand
         self.description = description
@@ -28,13 +28,13 @@ struct Product: Codable {
     }
 }
 
-struct ProductItem: Codable {
-    let price: Price?
+struct Price: Codable {
+    let price: PriceMetaData
 }
 
-struct Price: Codable {
-    let regular: Double
-    let promo: Double
+struct PriceMetaData: Codable {
+    let regular: Double?
+    let promo: Double?
 }
 
 struct ProductsResponse: Codable {
@@ -57,10 +57,11 @@ extension Product {
             brand: "Kroger",
             description: "Kroger 2% Reduced Fat Milk",
             items: [
-                ProductItem(
-                    price: Price(
-                        regular: 1.49,
-                        promo: 0
+                Price(
+                    price:
+                        PriceMetaData(
+                            regular: 1.49,
+                            promo: 0
                     )
                 )
             ],
