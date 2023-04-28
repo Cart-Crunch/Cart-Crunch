@@ -11,60 +11,29 @@ import CoreLocation
 
 
 class StoreLocatorViewController: UIViewController, CLLocationManagerDelegate {
-    
-    
-    
-    private let mapView : MKMapView = {
-        
+    private let networkManager = NetworkManager()
+    private let manager = CLLocationManager()
+    private lazy var locationManager = LocationManager(networkManager: networkManager)
+    private var fetchedStores: [Store] = []
+
+        // MARK: - UI Components
+    private let mapView: MKMapView = {
         let map = MKMapView()
-        
         map.overrideUserInterfaceStyle = .dark
-        
         return map
     }()
-    
-    private let manager = CLLocationManager()
  
     private let watchListButton: UIButton = {
-        
         let button = UIButton()
-        
         button.setTitle("Watch List", for: .normal)
-        
         button.backgroundColor = .systemGray
-        
         button.layer.cornerRadius = 5
-        
         return button
     }()
-
-    private let locationsTableView: UITableView = {
-
-        let tableView = UITableView()
-
-        tableView.backgroundColor = .systemBackground
-        
-        tableView.allowsSelection = true
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "location")
-        
-        tableView.rowHeight = 50
-
-        return tableView
-    }()
     
-    
-    //attach our button to a target
-    private func addButtonTargets(){
-        
-        watchListButton.addTarget(self, action: #selector(onWatchListButtonTapped), for: .touchUpInside)
-    }
-    
+        // MARK: - Lifecycle
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-
-        
         navigationController?.isNavigationBarHidden = true
         
         setupUI()
@@ -72,54 +41,98 @@ class StoreLocatorViewController: UIViewController, CLLocationManagerDelegate {
         addButtonTargets()
         
         view.backgroundColor = .blue
-        
-        createAnnotations(locations:annotationLocations)
+        mapView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         super.viewDidAppear(animated)
         
-        manager.desiredAccuracy = kCLLocationAccuracyBest // battery
-        
         manager.delegate = self
-        
+        manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
-        
         manager.startUpdatingLocation()
+        locationManager.requestUserLocation()
     }
-    
+
+        // MARK: - CLLocationManagerDelegate
     // location manager gets location of the user
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         if let location = locations.first {
-            
             manager.stopUpdatingLocation()
             
-            render(location)
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            
+            NetworkManager.shared.fetchNearbyStores(latitude: latitude, longitude: longitude) { [weak self] result in
+                switch result {
+                    case .success(let stores):
+                        DispatchQueue.main.async {
+                            self?.fetchedStores = stores
+                            print("Fetched stores: \(stores)")
+                            self?.createAnnotations(stores: stores)
+                            self?.fitAllAnnotations()
+                        }
+                    case .failure(let error):
+                        print("Error fetching stores:", error)
+                }
+            }
+            
         }
     }
     
-    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            manager.startUpdatingLocation()
+        } else if status == .denied || status == .restricted {
+            print("denied")
+        }
+    }
+
     // will render the map to the users area
     func render(_ location: CLLocation) {
         
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
-        let span = MKCoordinateSpan(latitudeDelta: 0.1 , longitudeDelta: 0.1)
+        let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
         
         let region = MKCoordinateRegion(center: coordinate, span: span)
         
         mapView.setRegion(region, animated: true)
-        
-        let pin = MKPointAnnotation()
-        
-        pin.coordinate = coordinate
-        
-        mapView.addAnnotation(pin)
     }
     
+        // MARK: - Map Rendering and Annotations
+    func fitAllAnnotations() {
+        let annotations = mapView.annotations.filter { !$0.isEqual(mapView.userLocation) }
+        if annotations.count > 1 {
+            var zoomRect = MKMapRect.null
+            for annotation in annotations {
+                let annotationPoint = MKMapPoint(annotation.coordinate)
+                let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 0.1, height: 0.1)
+                zoomRect = zoomRect.union(pointRect)
+            }
+            mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100), animated: true)
+        } else if annotations.count == 1 {
+            let coordinate = CLLocationCoordinate2D(latitude: annotations[0].coordinate.latitude, longitude: annotations[0].coordinate.longitude)
+            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+            let region = MKCoordinateRegion(center: coordinate, span: span)
+            mapView.setRegion(region, animated: true)
+        }
+    }
+
+        //create our annotations on the map
+    func createAnnotations(stores: [Store]){
+        mapView.removeAnnotations(mapView.annotations) // remove previous annotations
+        for store in stores {
+            let annotations = MKPointAnnotation()
+            
+            annotations.title = store.name
+            annotations.coordinate = CLLocationCoordinate2D(latitude: store.geolocation.latitude , longitude: store.geolocation.longitude)
+            
+            mapView.addAnnotation(annotations)
+        }
+    }
     
+        // MARK: - UI Setup
     // uiset up for buttons and mapview
     private func setupUI(){
         
@@ -139,6 +152,12 @@ class StoreLocatorViewController: UIViewController, CLLocationManagerDelegate {
         ])
     }
     
+        // MARK: - Button Actions
+        //attach our button to a target
+    private func addButtonTargets(){
+        watchListButton.addTarget(self, action: #selector(onWatchListButtonTapped), for: .touchUpInside)
+    }
+    
     //button action event
     @objc private func onWatchListButtonTapped(){
         
@@ -153,15 +172,15 @@ class StoreLocatorViewController: UIViewController, CLLocationManagerDelegate {
         mapView.frame = view.bounds
     }
     
+        // MARK: - Sheet Presentation
     // set up our sheet presentation
-    private func configureSheet(){
-        
+    private func configureSheet() {
         let sheetController = SheetViewController()
-        
+        sheetController.fetchedStores = fetchedStores
+
         let sheetNav = UINavigationController(rootViewController: sheetController)
         
         if let sheet = sheetNav.sheetPresentationController {
-            
             sheet.detents = [.custom(resolver: { context in
                 0.35 * context.maximumDetentValue
             }), .large()]
@@ -174,27 +193,27 @@ class StoreLocatorViewController: UIViewController, CLLocationManagerDelegate {
         }
         navigationController?.present(sheetNav, animated: true)
     }
-    
-    
-    //have to put our api locations into an array. below is a hard coded sample array of locations
-    let annotationLocations = [
+
+}
+
+    // MARK: - MKMapViewDelegate
+extension StoreLocatorViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "storeAnnotation"
         
-        ["title": "point 1", "latitude": 37.790782, "longitude":-122.408881],
-        ["title": "point 2", "latitude": 37.795846, "longitude": -122.401530],
-        ["title": "point 3", "latitude": 37.779024, "longitude": -122.425024]
-]
-         
-    //create our annotations on the map
-    func createAnnotations(locations: [[String : Any]]){
-        
-        for location in locations {
-            let annotations = MKPointAnnotation()
-            
-            annotations.title = (location["title"] as! String)
-            annotations.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! CLLocationDegrees, longitude: location["longitude"] as! CLLocationDegrees)
-            
-            mapView.addAnnotation(annotations)
+        if annotation is MKUserLocation {
+            return nil
         }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        return annotationView
     }
-    
 }
