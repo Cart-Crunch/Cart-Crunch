@@ -25,7 +25,7 @@ class StoreLocatorViewController: UIViewController, CLLocationManagerDelegate {
  
     private let watchListButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Watch List", for: .normal)
+        button.setTitle("List View", for: .normal)
         button.backgroundColor = .systemGray
         button.layer.cornerRadius = 5
         return button
