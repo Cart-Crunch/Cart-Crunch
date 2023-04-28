@@ -159,7 +159,7 @@ class NetworkManager {
                         URLQueryItem(name: "filter.lat.near", value: "\(latitude)"),
                         URLQueryItem(name: "filter.lon.near", value: "\(longitude)"),
                         URLQueryItem(name: "filter.radiusInMiles", value: "100"),
-                        URLQueryItem(name: "filter.limit", value: "5")
+                        URLQueryItem(name: "filter.limit", value: "10")
                     ]
                     
                     guard let url = urlComponents.url else {
