@@ -5,36 +5,39 @@
 //  Created by Jonathan Velez on 4/20/23.
 //
 
-import Foundation
 import UIKit
 
-class SheetViewController: UITableViewController  {
-
-    let items = Range(0...20).map {_ in "($0)"}
-
+class SheetViewController: UITableViewController {
+        // MARK: - Properties
+    var fetchedStores: [Store] = []
+    
+        // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-
+        setupTableView()
+    }
+    
+        // MARK: - TableView Setup
+    private func setupTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ItemCell")
     }
-
+    
+        // MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return items.count
+        return fetchedStores.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
-
+        
+        let store = fetchedStores[indexPath.row]
         var content = cell.defaultContentConfiguration()
-
-        content.text = "Item \(indexPath.row)"
-
+        content.text = store.name
+        
         cell.contentConfiguration = content
-
+        
         return cell
     }
 }
+
+

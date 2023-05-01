@@ -31,6 +31,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location update failed with error: \(error.localizedDescription)")
+    }
+
         // MARK: - CLLocationManagerDelegate
         /// Handles the updated location information.
         /// - Parameters:
@@ -39,25 +43,30 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             locationManager.stopUpdatingLocation()
-            fetchStores(for: location.coordinate)
+            print("Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+
+            fetchStores(for: location.coordinate) { [weak self] result in
+                switch result {
+                    case .success(let stores):
+                        print("sucess")
+                            // Handle success, e.g., update the UI, send a notification, etc.
+                    case .failure(let error):
+                        print("error")
+                            // Handle failure, e.g., show an error message to the user
+                }
+            }
         }
     }
+
     
         // MARK: - Fetch Stores
         /// Fetches stores for the given coordinate.
         /// - Parameter
         /// - coordinate: A CLLocationCoordinate2D object containing the user's location.
-    func fetchStores(for coordinate: CLLocationCoordinate2D) {
-        networkManager.fetchNearbyStores(latitude: coordinate.latitude, longitude: coordinate.longitude) { result in
-            switch result {
-                case .success(let stores):
-                    print("Fetched stores:", stores)
-                        // Handle the fetched stores, e.g., update the UI or store them in a property
-                case .failure(let error):
-                    print("Error fetching stores:", error)
-                        // Handle the error, e.g., show an error message
-            }
-        }
+    typealias FetchStoresCompletionHandler = (Result<[Store], Error>) -> Void
+    
+    func fetchStores(for coordinate: CLLocationCoordinate2D, completion: @escaping FetchStoresCompletionHandler) {
+        networkManager.fetchNearbyStores(latitude: coordinate.latitude, longitude: coordinate.longitude, completion: completion)
     }
-}
 
+}
