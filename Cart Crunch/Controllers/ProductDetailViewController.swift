@@ -7,11 +7,11 @@
 import UIKit
 import Nuke
 
-//product detail view controller, this page will display the details of our products
-
 class ProductDetailViewController: UIViewController {
     
     var product: Product?
+    var productWatchList: [Product]?
+    var tableViewWatchList: UITableView?
     
     // MARK: - Network manager
     //so we can access the methods from this class
@@ -19,16 +19,27 @@ class ProductDetailViewController: UIViewController {
     
     lazy var watchListButton: UIButton = {
         let button = UIButton()
-        button.setTitle("+ Add to WatchList", for: .normal)
-        button.setImage(UIImage(systemName: "plus_icon"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = hexStringToUIColor(hex: "#F9F9F9")
-        button.titleLabel?.font = .systemFont(ofSize: 20.0, weight: .semibold)
-        button.layer.cornerRadius = 4
-        button.layer.borderWidth = 2
-        button.setTitleColor(.black, for: .normal)
-        // @Deprecated: Can't find a better Solution right now
-        button.titleEdgeInsets = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+        if let product = self.product, DataStore.shared.watchlist.contains(where: { $0.productId == product.productId }) {
+                button.setTitle(" Added to WatchList", for: .normal)
+                button.setImage(UIImage(systemName: "checkmark"), for: .normal)
+                button.imageView?.tintColor = .white
+                button.setTitleColor(.white, for: .normal)
+                button.backgroundColor = .black
+                button.translatesAutoresizingMaskIntoConstraints = false
+                button.titleLabel?.font = .systemFont(ofSize: 20.0, weight: .semibold)
+                button.layer.cornerRadius = 4
+                button.layer.borderWidth = 2
+            } else {
+                button.setTitle("+ Add to WatchList", for: .normal)
+                button.setImage(UIImage(systemName: "plus_icon"), for: .normal)
+                button.setTitleColor(.black, for: .normal)
+                button.backgroundColor = hexStringToUIColor(hex: "#F9F9F9")
+                button.translatesAutoresizingMaskIntoConstraints = false
+                button.titleLabel?.font = .systemFont(ofSize: 20.0, weight: .semibold)
+                button.layer.cornerRadius = 4
+                button.layer.borderWidth = 2
+            }
+        
         return button
     }()
     
@@ -48,7 +59,7 @@ class ProductDetailViewController: UIViewController {
         label.textColor = textColor
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         label.textAlignment = .left
-        label.numberOfLines = 2
+        label.numberOfLines = 3
         // MARK: - Only for Testing Purposes
         label.text = "Kroger 2% Reduced Fat Milk"
         
@@ -95,6 +106,10 @@ class ProductDetailViewController: UIViewController {
         setupUI()
         // loads the data
         setupData()
+        //loads the button targets
+        addButtonTargets()
+        //make our watchlist persistent and passable accross views
+        productWatchList = DataStore.shared.watchlist
         
         navigationController?.navigationBar.tintColor = hexStringToUIColor(hex: "344C5C")
         if #available(iOS 13.0, *) {
@@ -106,6 +121,10 @@ class ProductDetailViewController: UIViewController {
         view.backgroundColor = .white
     }
     
+    private func addButtonTargets() {
+        watchListButton.addTarget(self, action: #selector(watchListButtonSelected), for: .touchUpInside)
+    }
+    
     private func findImageURL(for images: [ImageMetaData], sizeName: String) -> String? {
         
         return images.first(where: { $0.size == sizeName })?.url
@@ -114,7 +133,7 @@ class ProductDetailViewController: UIViewController {
     private func findProductPricing(for items: PriceMetaData) -> Double? {
         return items.regular
     }
-
+    
     //UI set up function, sets up our UI
     private func setupUI() {
         view.addSubview(productImageView)
@@ -135,7 +154,7 @@ class ProductDetailViewController: UIViewController {
             productImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             productImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             productImageView.widthAnchor.constraint(equalToConstant: 393),
-            productImageView.heightAnchor.constraint(equalToConstant: 261),
+            productImageView.heightAnchor.constraint(equalToConstant: 300),
             productImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             
@@ -163,7 +182,8 @@ class ProductDetailViewController: UIViewController {
     }
     
     private func setupData() {
-        let desiredSizeName = "medium" // Change this to the size name you want to use
+        //changed this to extra large for better resolution
+        let desiredSizeName = "xlarge" // Change this to the size name you want to use
         
         let product = product
         // MARK: - Networking
@@ -194,25 +214,38 @@ class ProductDetailViewController: UIViewController {
         }
         
     }
-}
-
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-let deviceName: [String] = [
-    "iPhone 14 Pro Max"
-]
-
-@available(iOS 13.0, *)
-struct ProductDetail_Preview: PreviewProvider {
-    static var previews: some View {
-        ForEach(deviceName, id: \.self) { deviceName in
-            UIViewControllerPreview {
-                ProductDetailViewController()
-            }.previewDevice(PreviewDevice(rawValue: deviceName))
-                .previewDisplayName(deviceName)
+    
+    @objc private func watchListButtonSelected() {
+        guard let product = product else { return }
+        let homeViewController = HomeScreenViewController()
+        let isAlreadyInWatchlist = DataStore.shared.watchlist.contains { $0.productId == product.productId }
+        if !isAlreadyInWatchlist {
+            //if the data isn't already in our watchlist add it to the watchlist and change the button
+            //color and label
+            DataStore.shared.watchlist.append(product)
+            watchListButton.setTitle(" Added to WatchList", for: .normal)
+            watchListButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+            watchListButton.imageView?.tintColor = .white
+            watchListButton.setTitleColor(.white, for: .normal)
+            watchListButton.backgroundColor = .black
+            watchListButton.titleLabel?.font = .systemFont(ofSize: 20.0, weight: .semibold)
+            watchListButton.layer.cornerRadius = 4
+            watchListButton.layer.borderWidth = 2
+            navigationController?.popViewController(animated: true)
+        } else {
+            //if the product is already in the watchlist we are going to remove it
+            //and change the button color and label
+            if let index = DataStore.shared.watchlist.firstIndex(where: { $0.productId == product.productId }) {
+                DataStore.shared.watchlist.remove(at: index)
+            }
+            watchListButton.setTitle("+ Add to WatchList", for: .normal)
+            watchListButton.setImage(UIImage(systemName: "plus_icon"), for: .normal)
+            watchListButton.setTitleColor(.black, for: .normal)
+            watchListButton.backgroundColor = hexStringToUIColor(hex: "#F9F9F9")
+            watchListButton.titleLabel?.font = .systemFont(ofSize: 20.0, weight: .semibold)
+            watchListButton.layer.cornerRadius = 4
+            watchListButton.layer.borderWidth = 2
+            navigationController?.popViewController(animated: true)
         }
     }
 }
-#endif

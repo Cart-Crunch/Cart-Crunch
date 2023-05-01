@@ -74,7 +74,7 @@ class NetworkManager {
                         URLQueryItem(name: "filter.term", value: searchTerm),
                         URLQueryItem(name: "filter.limit", value: "25"),
                         URLQueryItem(name: "filter.start", value: "1"),
-                        URLQueryItem(name: "filter.locationId", value: "09000278")
+                        URLQueryItem(name: "filter.locationId", value: "01400943")
                     ]
                     
                     guard let url = urlComponents.url else {

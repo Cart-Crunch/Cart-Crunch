@@ -69,6 +69,8 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
     
     //MARK: - Product object array
     var product: [Product] = []
+    //array of watchlist items
+    var productWatchList: [Product] = []
     
     func findImageURL(for images: [ImageMetaData], sizeName: String) -> String? {
         return images.first(where: { $0.size == sizeName })?.url
@@ -78,7 +80,6 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        displayWatchListEmptyMessage()
         tableViewWatchList.delegate = self
         tableViewWatchList.dataSource = self
         tableViewSearchResults.delegate = self
@@ -93,7 +94,13 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
     override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(true)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        productWatchList = DataStore.shared.watchlist
+        tableViewWatchList.reloadData()
+        displayWatchListEmptyMessage()
     }
     
     //MARK: - setupUI function
@@ -126,7 +133,7 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
     func displayWatchListEmptyMessage() {
         //we will have to change this from displayed products to our array of watchlist items
         //whenever we create it
-        if product.isEmpty {
+        if productWatchList.isEmpty && product.isEmpty {
             view.addSubview(watchListEmptyImage)
             view.addSubview(watchListEmptyLabel)
                 
@@ -145,76 +152,104 @@ class HomeScreenViewController: UIViewController, ProductTableViewCellDelegate {
             ])
                         
             tableViewWatchList.isHidden = true
+        } else {
+            watchListEmptyLabel.removeFromSuperview()
+            watchListEmptyImage.removeFromSuperview()
         }
     }
 }
 
+//MARK: - Search result/Watch list table view extension
 extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return product.count
+        if tableView == tableViewSearchResults {
+            return product.count
+        } else {
+            return productWatchList.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell else {
             fatalError("Table view could not load")
         }
-        //configuring the cells for reuse so they are all the same
-        let product = product[indexPath.row]
-        cell.configure(with: product)
+        
+        let productToDisplay: Product
+        if tableView == tableViewSearchResults {
+            productToDisplay = product[indexPath.row]
+        } else {
+            productToDisplay = productWatchList[indexPath.row]
+        }
+        
+        cell.configure(with: productToDisplay)
         cell.backgroundColor = .white
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let product = product[indexPath.row]
-        delegate?.didSelectProduct(product)
+        let productToDisplay: Product
+        if tableView == tableViewSearchResults {
+            productToDisplay = product[indexPath.row]
+        } else {
+            productToDisplay = productWatchList[indexPath.row]
+        }
+        
+        delegate?.didSelectProduct(productToDisplay)
         
         // Open Product Detail Controller for Product
         let productVC = ProductDetailViewController()
-        // unsubscribe product data to the detail view controller
-        productVC.product = product
+        productVC.product = productToDisplay
         productVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(productVC, animated: true)
     }
 }
 
 //MARK: - Search bar extension/functions
+var fetchProductsTimer: Timer?
+
 extension HomeScreenViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Invalidate the timer if it's already running
+        fetchProductsTimer?.invalidate()
+        
         if searchText.isEmpty {
-                    //If the search bar is empty, remove the search results table from the view and show the watch list table
-                    tableViewSearchResults.removeFromSuperview()
-                    tableViewWatchList.isHidden = false
-                } else {
-                    //If the search bar has text, hide the watchlist table view and show the search results table
-                    tableViewWatchList.isHidden = true
-                    view.addSubview(tableViewSearchResults)
-                    tableViewSearchResults.translatesAutoresizingMaskIntoConstraints = false
-                    NSLayoutConstraint.activate([
-                        tableViewSearchResults.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 25),
-                        tableViewSearchResults.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                        tableViewSearchResults.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                        tableViewSearchResults.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-                    ])
-                    //update the search results table based on the search text here
-                    networkManager.fetchProducts(searchTerm: searchText) { result in
-                        switch result {
-                        case .success(let products):
-                            DispatchQueue.main.async {
-                                self.product = products
-                                
-                                // Prefetch images
-                                let urls = products.compactMap { self.findImageURL(for: $0.images.first?.sizes ?? [], sizeName: "medium") }.compactMap { URL(string: $0) }
-                                self.imagePrefetcher.startPrefetching(with: urls)
-                                
-                                self.tableViewSearchResults.reloadData()
-                            }
+            //If the search bar is empty, remove the search results table from the view and show the watch list table
+            tableViewSearchResults.removeFromSuperview()
+            tableViewWatchList.isHidden = false
+        } else {
+            //If the search bar has text, hide the watchlist table view and show the search results table
+            tableViewWatchList.isHidden = true
+            view.addSubview(tableViewSearchResults)
+            tableViewSearchResults.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                tableViewSearchResults.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 25),
+                tableViewSearchResults.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                tableViewSearchResults.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableViewSearchResults.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+            
+            // Create a new timer to call fetchProducts after time interval
+            fetchProductsTimer = Timer.scheduledTimer(withTimeInterval: 0.003, repeats: false) { _ in
+                // Call fetchProducts here
+                self.networkManager.fetchProducts(searchTerm: searchText) { result in
+                    switch result {
+                    case .success(let products):
+                        DispatchQueue.main.async {
+                            self.product = products
                             
-                        case .failure(let error):
-                            print(error)
+                            // Prefetch images
+                            let urls = products.compactMap { self.findImageURL(for: $0.images.first?.sizes ?? [], sizeName: "medium") }.compactMap { URL(string: $0) }
+                            self.imagePrefetcher.startPrefetching(with: urls)
+                            
+                            self.tableViewSearchResults.reloadData()
                         }
+                        
+                    case .failure(let error):
+                        print(error)
                     }
                 }
+            }
+        }
     }
 }
