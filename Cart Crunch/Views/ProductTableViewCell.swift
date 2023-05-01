@@ -155,7 +155,7 @@ class ProductTableViewCell: UITableViewCell {
             
             productNameLabel.topAnchor.constraint(equalTo: productImageView.topAnchor, constant: 8),
             productNameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 10),
-            productNameLabel.trailingAnchor.constraint(equalTo: productOldPriceLabel.leadingAnchor, constant: -90),
+            productNameLabel.trailingAnchor.constraint(equalTo: productOldPriceLabel.leadingAnchor, constant: -30),
             
             productBrandNameLabel.bottomAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: -8),
             productBrandNameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 10),
@@ -178,19 +178,3 @@ extension ProductTableViewCell: HomeScreenViewControllerDelegate {
     }
 }
 
-
-
-//#if canImport(SwiftUI) && DEBUG
-//import SwiftUI
-//
-//@available(iOS 13.0, *)
-//struct ProductTableViewCell_Preview: PreviewProvider {
-//    static var previews: some View {
-//        UIViewPreview {
-//            ProductTableViewCell()
-//        }.previewLayout(.sizeThatFits)
-//            .padding(10)
-//    }
-//}
-//
-//#endif
